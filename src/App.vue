@@ -1,33 +1,22 @@
 <template>
   <div id="app" class="container mt-5">
-    <Checkout
+    <router-view
       :cart="cart"
       :cartQty="cartQty"
       :cartTotal="cartTotal"
-      @deleteItem="deleteItem"
-      @add="addItem"
       :brandName="brandName"
-    />
-
-    <Products
       :products="products"
       :maximum.sync="maximum"
-      :cart="cart"
-      :cartQty="cartQty"
-      :cartTotal="cartTotal"
       :sliderStatus="sliderStatus"
-      @toggleSlider="toggleSliderStatus"
-      @deleteItem="deleteItem"
       @add="addItem"
-      :brandName="brandName"
-    />
+      @deleteItem="deleteItem"
+      @toggleSlider="toggleSliderStatus"
+    >
+    </router-view>
   </div>
 </template>
 
 <script>
-import Products from "./components/Porducts";
-import Checkout from "./components/Checkout";
-
 import axios from "axios";
 
 export default {
@@ -40,10 +29,6 @@ export default {
       cart: [],
       brandName: "SmartI'M"
     };
-  },
-  components: {
-    Products,
-    Checkout
   },
   methods: {
     addItem: function(product) {

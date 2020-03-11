@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>{{ brandName + " Checkout"}}</h1>
+    <h1>{{ brandName + " Checkout" }}</h1>
+    <h4 class="text-info" v-cloak v-if="cart.length == 0">
+      Empty Shopping Cart
+      <font-awesome-icon icon="shopping-cart"></font-awesome-icon>
+    </h4>
     <table class="table table-hover" v-if="cart.length > 0">
       <caption class="text-right h3">
         <b>Total:</b>
@@ -42,6 +46,9 @@
         </tr>
       </tbody>
     </table>
+    <router-link class="btn btn-sm btn-outline-info text-dark" to="/"
+      >Keep Shopping</router-link
+    >
   </div>
 </template>
 <script>

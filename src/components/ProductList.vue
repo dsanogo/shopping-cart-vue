@@ -8,7 +8,7 @@
   >
     <div
       v-cloak
-      class="row d-none mb-3 align-items-center"
+      class="row d-flex mb-3 align-items-center"
       v-for="(item, index) in filteredProducts"
       :key="item.id"
       :data-index="index"

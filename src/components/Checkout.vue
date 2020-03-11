@@ -1,0 +1,62 @@
+<template>
+  <div>
+    <h1>{{ brandName + " Checkout"}}</h1>
+    <table class="table table-hover" v-if="cart.length > 0">
+      <caption class="text-right h3">
+        <b>Total:</b>
+        <Price
+          class="d-bloc text-success font-weight-light"
+          :value="Number(cartTotal)"
+        />
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Item</th>
+          <th scope="col" class="text-center">Qty</th>
+          <th scope="col" class="text-right">Price</th>
+          <th scope="col" class="text-right">Sub-total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in cart" :key="item.product.id">
+          <td class="text-center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button @click="$emit('add', item.product)" class="btn btn-info">
+                +
+              </button>
+              <button
+                @click="$emit('deleteItem', index)"
+                class="btn btn-outline-info"
+              >
+                -
+              </button>
+            </div>
+          </td>
+          <td scope="row">{{ item.product.name }}</td>
+          <td class="text-center">{{ item.qty }}</td>
+          <td class="text-right">{{ Number(item.product.price) }}</td>
+          <td class="text-right">
+            {{ Number(item.product.price * item.qty) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+<script>
+import Price from "./Price";
+export default {
+  name: "Checkout",
+  props: {
+    cart: Array,
+    cartTotal: Number,
+    brandName: String
+  },
+  components: {
+    Price
+  }
+};
+</script>
+
+<style></style>
